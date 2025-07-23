@@ -39,8 +39,15 @@
     }
 
     .logo img {
-      width: 50px;
-    }
+  width: 100px;                 /* Más grande */
+  background-color: var(--blanco); /* Fondo blanco */
+  border-radius: 12px;          /* Bordes redondeados */
+  padding: 6px;                 /* Espacio interno */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Sombra */
+  display: block;
+  /* margin: 0 auto;  opcional, dependiendo si quieres centrar o no */
+}
+
 
     .logo-text {
       display: none;
@@ -52,11 +59,29 @@
       margin-left: auto;
     }
 
-    nav a {
-      color: var(--blanco);
-      text-decoration: none;
-      font-weight: 500;
-    }
+  nav a {
+  position: relative;
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.7em 1.4em;
+  margin: 0 0.6em;
+  border-radius: 30px; /* Forma elíptica */
+  background: rgba(255, 235, 59, 0.3); /* Amarillo translúcido */
+  box-shadow: 0 2px 6px rgba(255, 235, 59, 0.4);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+nav a:hover,
+nav a:focus {
+  background: var(--amarillo);
+  color: var(--azul-oscuro);
+  box-shadow: 0 4px 10px rgba(255, 235, 59, 0.7);
+  outline: none;
+}
+
 
     .menu-toggle {
       display: none;
@@ -327,7 +352,7 @@
 <body>
   <header>
     <div class="logo">
-      <img src="https://raw.githubusercontent.com/Energizamathecomics/Energiza/refs/heads/main/logo.png" alt="Logo Energiza" />
+      <img src="logo.png" alt="Logo Energiza" />
     </div>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <nav id="nav">
