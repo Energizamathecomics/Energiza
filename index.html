@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Energiza Soluciones</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #1c1c1c;
+    }
+
+    header {
+      background-color: #002d5e; /* Azul metálico */
+      color: white;
+      text-align: center;
+      padding: 1.5em 1em;
+    }
+
+    .intro {
+      background-color: #fff8e1; /* amarillo claro */
+      padding: 2em;
+      font-size: 1.2em;
+      text-align: center;
+      border-bottom: 3px solid #ffca28;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 1000px;
+      margin: 2em auto;
+      overflow: hidden;
+      border: 5px solid #ffca28;
+      border-radius: 10px;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 5000px;
+    }
+
+    .slider img {
+      width: 1000px;
+      height: 565px;
+    }
+
+    .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 202, 40, 0.8);
+      border: none;
+      font-size: 2em;
+      padding: 0.2em 0.5em;
+      cursor: pointer;
+      z-index: 1;
+      color: #002d5e;
+      font-weight: bold;
+    }
+
+    .nav.left { left: 10px; }
+    .nav.right { right: 10px; }
+
+    .videos {
+      padding: 2em;
+      text-align: center;
+      background-color: #e3f2fd;
+    }
+
+    .video-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      flex-wrap: wrap;
+      margin-top: 1em;
+    }
+
+    .benefits, .calendar, .gallery, .contact {
+      padding: 2em;
+      text-align: center;
+    }
+
+    .benefits ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.1em;
+    }
+
+    .benefits li::before {
+      content: "⚡";
+      color: #ffca28;
+      margin-right: 0.5em;
+    }
+
+    .calendar table {
+      margin: auto;
+      border-collapse: collapse;
+    }
+
+    .calendar th, .calendar td {
+      border: 1px solid #002d5e;
+      padding: 10px;
+    }
+
+    .gallery-images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1em;
+      margin-top: 1em;
+    }
+
+    .gallery-images img {
+      width: 200px;
+      height: auto;
+      border: 3px solid #002d5e;
+      border-radius: 10px;
+    }
+
+    .participar {
+      text-align: center;
+      padding: 1em;
+    }
+
+    .participar button {
+      background-color: #002d5e;
+      color: white;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .participar button:hover {
+      background-color: #ffca28;
+      color: #002d5e;
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .contact input, .contact textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact button {
+      background-color: #002d5e;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact button:hover {
+      background-color: #ffca28;
+      color: #002d5e;
+    }
+
+    footer {
+      background-color: #002d5e;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 2em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Energiza Soluciones Creativas</h1>
+    <h2>Para la Educación Matemática y Tecnológica S. de R. L. de C. V.</h2>
+  </header>
+
+  <section class="intro">
+    <p>
+      Ejercitar el cerebro es fundamental para mantener y mejorar sus funciones a lo largo del tiempo.
+      Así como el ejercicio físico beneficia al cuerpo, el ejercicio mental fortalece nuestras habilidades
+      cognitivas y ayuda a preservar la salud cerebral en general.
+    </p>
+  </section>
+
+  <section class="slider-container">
+    <div class="slider" id="slider">
+      <img src="img1.png" alt="Imagen 1">
+      <img src="img2.png" alt="Imagen 2">
+      <img src="img3.png" alt="Imagen 3">
+      <img src="img4.png" alt="Imagen 4">
+      <img src="img5.png" alt="Imagen 5">
+    </div>
+    <button class="nav left" onclick="prevSlide()">&#10094;</button>
+    <button class="nav right" onclick="nextSlide()">&#10095;</button>
+  </section>
+
+  <section class="videos">
+    <h3>Testimonios en Video</h3>
+    <div class="video-wrapper">
+      <video controls width="300" height="500">
+        <source src="testimonio_vertical.mp4" type="video/mp4">
+        Tu navegador no soporta el video.
+      </video>
+      <video controls width="560" height="315">
+        <source src="testimonio_horizontal.mp4" type="video/mp4">
+        Tu navegador no soporta el video.
+      </video>
+    </div>
+  </section>
+
+  <section class="participar">
+    <h3>¿Quieres participar?</h3>
+    <button onclick="alert('Gracias por tu interés. Pronto te contactaremos.')">¡Quiero Participar!</button>
+  </section>
+
+  <section class="benefits">
+    <h3>Beneficios del Proyecto</h3>
+    <ul>
+      <li>Mejora la memoria y atención</li>
+      <li>Fortalece la agilidad mental</li>
+      <li>Promueve el bienestar emocional</li>
+      <li>Fomenta el trabajo en equipo</li>
+      <li>Desarrolla habilidades tecnológicas</li>
+    </ul>
+  </section>
+
+  <section class="calendar">
+    <h3>Calendario de Actividades</h3>
+    <table>
+      <tr><th>Día</th><th>Actividad</th><th>Horario</th></tr>
+      <tr><td>Lunes</td><td>Juegos Matemáticos</td><td>10:00 - 11:00 AM</td></tr>
+      <tr><td>Miércoles</td><td>Ejercicio Mental</td><td>10:00 - 11:30 AM</td></tr>
+      <tr><td>Viernes</td><td>Taller de Tecnología</td><td>10:00 - 12:00 PM</td></tr>
+    </table>
+  </section>
+
+  <section class="gallery">
+    <h3>Galería Fotográfica</h3>
+    <div class="gallery-images">
+      <img src="galeria1.png" alt="Galería 1">
+      <img src="galeria2.png" alt="Galería 2">
+      <img src="galeria3.png" alt="Galería 3">
+    </div>
+  </section>
+
+  <section class="contact">
+    <h3>Contáctanos</h3>
+    <form onsubmit="enviarFormulario(event)">
+      <input type="text" placeholder="Tu nombre" required />
+      <input type="email" placeholder="Tu correo electrónico" required />
+      <textarea placeholder="Tu mensaje..." rows="4" required></textarea>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Energiza Soluciones Creativas S. de R. L. de C. V.</p>
+  </footer>
+
+  <script>
+    let currentIndex = 0;
+    const slider = document.getElementById('slider');
+    const slides = slider.querySelectorAll('img');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slider.style.transform = `translateX(-${index * 1000}px)`;
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    setInterval(nextSlide, 3000); // Cambio automático
+
+    function enviarFormulario(event) {
+      event.preventDefault();
+      alert("Gracias por tu mensaje. Nos pondremos en contacto pronto.");
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
