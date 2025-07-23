@@ -2,300 +2,472 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Energiza Soluciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energiza tu Cerebro</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
+    :root {
+      --azul: #2196f3;
+      --azul-oscuro: #1565c0;
+      --azul-metalico: #1e3a5f;
+      --amarillo: #ffeb3b;
+      --blanco: #ffffff;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #ffffff;
-      color: #1c1c1c;
+      background-color: var(--azul);
+      color: var(--azul-oscuro);
     }
 
     header {
-      background-color: #002d5e; /* Azul metálico */
-      color: white;
-      text-align: center;
-      padding: 1.5em 1em;
-    }
-
-    .intro {
-      background-color: #fff8e1; /* amarillo claro */
-      padding: 2em;
-      font-size: 1.2em;
-      text-align: center;
-      border-bottom: 3px solid #ffca28;
-    }
-
-    .slider-container {
-      position: relative;
-      width: 1000px;
-      margin: 2em auto;
-      overflow: hidden;
-      border: 5px solid #ffca28;
-      border-radius: 10px;
-    }
-
-    .slider {
+      background-color: var(--azul-oscuro);
+      padding: 1em;
       display: flex;
-      transition: transform 0.5s ease-in-out;
-      width: 5000px;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--blanco);
+      gap: 1em;
     }
 
-    .slider img {
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 50px;
+    }
+
+    .logo-text {
+      display: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 1em;
+      margin-left: auto;
+    }
+
+    nav a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2em;
+      background: none;
+      border: none;
+      color: var(--amarillo);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--azul-oscuro);
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    section {
+      padding: 3em 2em;
+      text-align: center;
+      position: relative;
+    }
+
+   section:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--amarillo), var(--blanco), var(--amarillo));
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+
+
+
+
+    .text-box {
+      background-color: var(--blanco);
+      padding: 1.5em;
+      border-radius: 12px;
+      display: inline-block;
+      max-width: 800px;
+      margin: 0 auto 2em;
+      color: var(--azul-oscuro);
+      text-align: left;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-bottom: 0.8em;
+    }
+
+    /* Estilo mejorado para el título habilidades */
+    #beneficios h2 {
+      color: var(--amarillo);
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 1em;
+      font-weight: 900;
+      text-shadow:
+        2px 2px 4px rgba(0,0,0,0.5),
+        0 0 10px var(--amarillo);
+      letter-spacing: 1.5px;
+      font-family: 'Segoe UI Black', 'Arial Black', sans-serif;
+    }
+
+    /* Círculos blancos con texto azul oscuro */
+    .benefits-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1em;
+      margin-top: 1.5em;
+    }
+
+    .benefit {
+      background: var(--blanco);
+      color: var(--azul-oscuro);
+      border-radius: 50%;
+      width: 130px;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-direction: column;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+      animation: pulse 2s infinite;
+      font-size: 1.1rem;
+    }
+
+    .benefit:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .cta-button {
+      background-color: var(--amarillo);
+      color: var(--azul-oscuro);
+      padding: 1em 2em;
+      border: none;
+      font-size: 1.2em;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #f7d600;
+    }
+
+    .image-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1em;
+      padding: 1em 0;
+    }
+
+    .image-slider img {
       width: 1000px;
       height: 565px;
-    }
-
-    .nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(255, 202, 40, 0.8);
-      border: none;
-      font-size: 2em;
-      padding: 0.2em 0.5em;
-      cursor: pointer;
-      z-index: 1;
-      color: #002d5e;
-      font-weight: bold;
-    }
-
-    .nav.left { left: 10px; }
-    .nav.right { right: 10px; }
-
-    .videos {
-      padding: 2em;
-      text-align: center;
-      background-color: #e3f2fd;
-    }
-
-    .video-wrapper {
-      display: flex;
-      justify-content: center;
-      gap: 2em;
-      flex-wrap: wrap;
-      margin-top: 1em;
-    }
-
-    .benefits, .calendar, .gallery, .contact {
-      padding: 2em;
-      text-align: center;
-    }
-
-    .benefits ul {
-      list-style: none;
-      padding: 0;
-      font-size: 1.1em;
-    }
-
-    .benefits li::before {
-      content: "⚡";
-      color: #ffca28;
-      margin-right: 0.5em;
-    }
-
-    .calendar table {
-      margin: auto;
-      border-collapse: collapse;
-    }
-
-    .calendar th, .calendar td {
-      border: 1px solid #002d5e;
-      padding: 10px;
-    }
-
-    .gallery-images {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1em;
-      margin-top: 1em;
-    }
-
-    .gallery-images img {
-      width: 200px;
-      height: auto;
-      border: 3px solid #002d5e;
+      object-fit: cover;
       border-radius: 10px;
+      scroll-snap-align: start;
+      flex-shrink: 0;
     }
 
-    .participar {
-      text-align: center;
-      padding: 1em;
+    .carousel {
+      display: flex;
+      gap: 1em;
+      justify-content: center;
     }
 
-    .participar button {
-      background-color: #002d5e;
-      color: white;
-      font-size: 1.2em;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    /* Testimonios más grandes */
+    #testimonios {
+      padding: 5em 2em;
+    }
+    #testimonios video {
+      width: 400px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
     }
 
-    .participar button:hover {
-      background-color: #ffca28;
-      color: #002d5e;
-    }
-
-    .contact form {
+    form {
+      max-width: 500px;
+      margin: auto;
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 1em;
-      max-width: 400px;
-      margin: auto;
+      text-align: left;
     }
 
-    .contact input, .contact textarea {
-      width: 100%;
-      padding: 10px;
+    input,
+    textarea {
+      padding: 0.8em;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 1em;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .contact button {
-      background-color: #002d5e;
-      color: white;
-      padding: 10px 20px;
+    .counter {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: var(--amarillo);
+      margin-top: 1em;
+      text-align: center;
+    }
+
+    .map-container {
+      margin-top: 2em;
+      width: 100vw;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    #mapa iframe {
+      width: 100vw;
+      max-width: 1200px;
+      height: 500px;
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .contact button:hover {
-      background-color: #ffca28;
-      color: #002d5e;
+      display: block;
+      margin: 0 auto;
     }
 
     footer {
-      background-color: #002d5e;
-      color: white;
+      background-color: var(--azul-oscuro);
+      padding: 2em;
       text-align: center;
-      padding: 1em;
-      margin-top: 2em;
+      font-size: 0.9em;
+      color: var(--blanco);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      row-gap: 10px;
+    }
+
+    footer p {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    footer .social-icons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    footer .social-icons a {
+      color: var(--blanco);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      transition: color 0.3s ease;
+    }
+    footer .social-icons a:hover {
+      color: var(--amarillo);
+    }
+
+    footer .social-icons svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Energiza Soluciones Creativas</h1>
-    <h2>Para la Educación Matemática y Tecnológica S. de R. L. de C. V.</h2>
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/Energizamathecomics/Energiza/refs/heads/main/logo.png" alt="Logo Energiza" />
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
   </header>
 
-  <section class="intro">
-    <p>
-      Ejercitar el cerebro es fundamental para mantener y mejorar sus funciones a lo largo del tiempo.
-      Así como el ejercicio físico beneficia al cuerpo, el ejercicio mental fortalece nuestras habilidades
-      cognitivas y ayuda a preservar la salud cerebral en general.
-    </p>
-  </section>
-
-  <section class="slider-container">
-    <div class="slider" id="slider">
-      <img src="img1.png" alt="Imagen 1">
-      <img src="img2.png" alt="Imagen 2">
-      <img src="img3.png" alt="Imagen 3">
-      <img src="img4.png" alt="Imagen 4">
-      <img src="img5.png" alt="Imagen 5">
+  <section id="inicio" data-aos="fade-up">
+    <div class="image-slider">
+      <img src="1.png" alt="Slide 1" />
+      <img src="2.png" alt="Slide 2" />
+      <img src="3.png" alt="Slide 3" />
+      <img src="4.png" alt="Slide 4" />
     </div>
-    <button class="nav left" onclick="prevSlide()">&#10094;</button>
-    <button class="nav right" onclick="nextSlide()">&#10095;</button>
-  </section>
-
-  <section class="videos">
-    <h3>Testimonios en Video</h3>
-    <div class="video-wrapper">
-      <video controls width="300" height="500">
-        <source src="testimonio_vertical.mp4" type="video/mp4">
-        Tu navegador no soporta el video.
-      </video>
-      <video controls width="560" height="315">
-        <source src="testimonio_horizontal.mp4" type="video/mp4">
-        Tu navegador no soporta el video.
-      </video>
+    <div class="text-box">
+      <h1>¡Vamos a trabajar nuestro cerebro!</h1>
+      <p>
+        Ejercitar el cerebro es fundamental para mantener y mejorar sus funciones
+        a lo largo del tiempo. Así como el ejercicio físico beneficia al cuerpo,
+        el mental fortalece nuestras habilidades cognitivas.
+      </p>
     </div>
   </section>
 
-  <section class="participar">
-    <h3>¿Quieres participar?</h3>
-    <button onclick="alert('Gracias por tu interés. Pronto te contactaremos.')">¡Quiero Participar!</button>
-  </section>
+<div style="text-align: center; margin: 2em 0; font-size: 3rem;">
+  🧠
+</div>
 
-  <section class="benefits">
-    <h3>Beneficios del Proyecto</h3>
-    <ul>
-      <li>Mejora la memoria y atención</li>
-      <li>Fortalece la agilidad mental</li>
-      <li>Promueve el bienestar emocional</li>
-      <li>Fomenta el trabajo en equipo</li>
-      <li>Desarrolla habilidades tecnológicas</li>
-    </ul>
-  </section>
 
-  <section class="calendar">
-    <h3>Calendario de Actividades</h3>
-    <table>
-      <tr><th>Día</th><th>Actividad</th><th>Horario</th></tr>
-      <tr><td>Lunes</td><td>Juegos Matemáticos</td><td>10:00 - 11:00 AM</td></tr>
-      <tr><td>Miércoles</td><td>Ejercicio Mental</td><td>10:00 - 11:30 AM</td></tr>
-      <tr><td>Viernes</td><td>Taller de Tecnología</td><td>10:00 - 12:00 PM</td></tr>
-    </table>
-  </section>
 
-  <section class="gallery">
-    <h3>Galería Fotográfica</h3>
-    <div class="gallery-images">
-      <img src="galeria1.png" alt="Galería 1">
-      <img src="galeria2.png" alt="Galería 2">
-      <img src="galeria3.png" alt="Galería 3">
+
+  <section id="beneficios" data-aos="fade-up">
+    <h2>Habilidades que trabajamos</h2>
+    <div class="benefits-grid">
+      <div class="benefit">🧠 Creatividad</div>
+      <div class="benefit">🧩 Razonamiento</div>
+      <div class="benefit">❤️ Emocional</div>
+      <div class="benefit">👁️ Percepción</div>
+      <div class="benefit">📖 Aprendizaje</div>
+      <div class="benefit">🏃 Motricidad</div>
+      <div class="benefit">⏱️ Abstracción</div>
+      <div class="benefit">🧭 Lateralidad</div>
     </div>
   </section>
 
-  <section class="contact">
-    <h3>Contáctanos</h3>
-    <form onsubmit="enviarFormulario(event)">
-      <input type="text" placeholder="Tu nombre" required />
-      <input type="email" placeholder="Tu correo electrónico" required />
-      <textarea placeholder="Tu mensaje..." rows="4" required></textarea>
-      <button type="submit">Enviar mensaje</button>
-    </form>
+<div style="text-align: center; margin: 2em 0; font-size: 3rem;">
+  ⚡
+</div>
+
+  <section id="testimonios" data-aos="fade-up">
+    <div class="text-box">
+      <h2>Testimonios reales</h2>
+      <div class="carousel">
+        <video controls>
+          <source src="testimonio1.mp4" type="video/mp4" />
+        </video>
+        <video controls>
+          <source src="testimonio2.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+<section id="participar" data-aos="zoom-in">
+  <div class="text-box" style="max-width: 600px; margin: 0 auto; padding: 2.5em;">
+    <h2 style="color: var(--amarillo); font-size: 2.2rem; margin-bottom: 1em;">¿Quieres participar?</h2>
+
+    <div style="display: flex; justify-content: center; gap: 1.2em; flex-wrap: wrap; font-size: 2.2rem; margin-bottom: 1.5em;">
+      🤖 🎨 🧠 📚 ✨ 🚀 💡
+    </div>
+
+    <div style="text-align: center;">
+      <a class="cta-button" href="https://wa.me/5213312345678" target="_blank" style="margin: 0 auto; display: inline-block;">
+        ¡Quiero Participar!
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <section id="contacto" data-aos="fade-up">
+    <div class="text-box">
+      <h2>Contacto</h2>
+      <form>
+        <input type="text" placeholder="Nombre" required />
+        <input type="tel" placeholder="Teléfono" required />
+        <input type="email" placeholder="Correo electrónico" required />
+        <textarea rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+        <button type="submit" class="cta-button">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="contador" data-aos="fade-up">
+    <div class="text-box">
+      <h2>Participantes</h2>
+      <div class="counter" id="counter">0</div>
+    </div>
+  </section>
+
+  <section id="mapa" data-aos="fade-up">
+    <div class="text-box" style="padding: 0; max-width: 100vw;">
+      <h2 style="color: var(--amarillo); text-align:center; font-size: 2.4rem; margin-bottom: 1rem;">¿Dónde estamos?</h2>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.7510671426516!2d-103.39671908497166!3d20.67694448619826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b0b88fd0e267%3A0xdee85797e113b9e5!2sGuadalajara%2C%20Jalisco!5e0!3m2!1ses!2smx!4v1628556468769!5m2!1ses!2smx"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 Energiza Soluciones Creativas S. de R. L. de C. V.</p>
-  </footer>
+    <p>Síguenos en redes sociales:</p>
+    <div class="social-icons" aria-label="Redes sociales">
+      <a href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M22.675 0h-21.35C.597 0 0 .597 0 1.333v21.333C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.127V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.143v3.24h-1.918c-1.504 0-1.796.715-1.796 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.324-.597 1.324-1.334V1.333C24 .597 23.403 0 22.675 0z"
+          />
+        </svg>
+      </a>
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M7.75 2h8.5C19.216 2 22 4.784 22 8.25v7.5c0 3.466-2.784 6.25-6.25 6.25h-8.5C4.784 22 2 19.216 2 15.75v-7.5C2 4.784 4.784 2 7.75 2zm4.25 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7.75a4.25 4.25 0 1 1 0 8.5 4.25 4.25 0 0 1 0-8.5z"
+/>
+</svg>
+</a>
+<a href="#" aria-label="YouTube">
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+<path d="M19.615 3.184C21.024 3.51 22 4.645 22 6.2v11.6c0 1.555-.976 2.69-2.385 3.016-3.159.697-9.656.697-12.815 0C3.976 20.49 3 19.355 3 17.8V6.2c0-1.555.976-2.69 2.385-3.016 3.159-.697 9.656-.697 12.815 0zM10 15.5l6-3.5-6-3.5v7z" />
+</svg>
+</a>
+</div>
 
-  <script>
-    let currentIndex = 0;
-    const slider = document.getElementById('slider');
-    const slides = slider.querySelectorAll('img');
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-      slider.style.transform = `translateX(-${index * 1000}px)`;
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      showSlide(currentIndex);
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      showSlide(currentIndex);
-    }
-
-    setInterval(nextSlide, 3000); // Cambio automático
-
-    function enviarFormulario(event) {
-      event.preventDefault();
-      alert("Gracias por tu mensaje. Nos pondremos en contacto pronto.");
-      event.target.reset();
-    }
-  </script>
-</body>
-</html>
+</footer> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <script> AOS.init(); function toggleMenu() { document.getElementById("nav").classList.toggle("active"); } let counter = document.getElementById("counter"); let count = 0; const target = 234; function updateCounter() { if (count < target) { count += 3; counter.innerText = count; setTimeout(updateCounter, 30); } else { counter.innerText = target; } } updateCounter(); </script> </body> </html>
